@@ -1,4 +1,131 @@
 :host {
     flex: auto;
+}
+
+header {
     display: flex;
+    height: 72px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.logo {
+    height: 80%;
+    margin: auto;
+}
+
+.search_container {
+    flex: auto;
+    display: flex;
+    margin: 0 45px;
+}
+
+.vamp_teeth {
+    margin: 8px 5px;
+    height: 65%;
+}
+
+.vamp_search {
+    flex: auto;
+    height: 40px;
+    background-color: transparent;
+    border: 0;
+    color: white;
+    font-size: 16px;
+    margin-top: 15px;
+    outline: 0;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.search_combinator {
+    flex: auto;
+    display: flex;
+    position: relative;
+}
+
+.search_combinator::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 16px;
+    height: 1px;
+    width: 100%;
+    background: gray;
+}
+
+.search_button {
+    background: transparent;
+    border: 0;
+    height: 50%;
+    margin: auto 0;
+}
+
+.search_button path {
+    fill: white;
+    transition: fill 0.3s;
+}
+
+.search_button:hover {
+    cursor: pointer;
+}
+
+.search_button:hover path {
+    fill: red;
+}
+
+.lang_cur_container {
+    display: flex;
+    flex-flow: column;
+    margin-right: 45px;
+}
+
+.lang_text, .curr_text {
+    margin: 0 auto;
+}
+
+.lang_text {
+    font-size: 30px
+}
+
+.curr_text {
+    font-size: 14px
+}
+
+.sign_in_container, .cart_container {
+    display: flex;
+    margin-right: 45px;
+}
+
+.sign_in_container svg {
+    width: 62px;
+    height: 62px;
+    fill: white;
+    margin: auto 0;
+}
+
+.sign_in_text_container, .cart_text_container {
+    margin: auto 0 auto 5px;
+}
+
+.bold_text, .welcome_text {
+    margin: 0;
+}
+
+.bold_text {
+    font-weight: bold;
+}
+
+.cart_container svg {
+    width: 35px;
+    height: 35px;
+    fill: white;
+    margin: auto 0;
+}
+
+.cart_counter {
+    text-align: center;
+    font-weight: bold;
+    background: white;
+    border-radius: 16px;
+    color: black
 }
