@@ -1,2 +1,6 @@
-<header-comp></header-comp>
-sisi
+<header-comp 
+    [(currency)]="currency" 
+    [(language)]="language"
+    [numberCartItems]="numberCartItems"
+    (languageCurrencyChanged)="changeLanguageCurrency">
+</header-comp>

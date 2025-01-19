@@ -12,20 +12,58 @@
         </form>
         <img class="vamp_teeth" src="./r_search.png">
     </div>
-    <div class="lang_cur_container">
-        <p class="lang_text">EN</p>
-        <p class="curr_text bold_text">USD</p>
-    </div>
-    <div class="sign_in_container">
-        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 100 100" xml:space="preserve">
-            <path d="M90,11.666L88.333,10c-8.941,10.307-21.318,16.666-35,16.666v1.668c7.363,0,13.334,5.225,13.334,11.666  c0,3.77-3.522,7.012-8.652,8.717L55,36.666l-5,5l-5-5l-3.013,12.051c-5.135-1.705-8.654-4.947-8.654-8.717  c0-6.441,5.971-11.666,13.334-11.666v-1.668c-13.682,0-26.059-6.359-35-16.666L10,11.666C14.444,22.252,14.444,39.414,10,50  c8.819,0,15.972,7.461,15.972,16.667c7.057,0,12.778,5.97,12.778,13.333c5.293,0,9.583,4.479,9.583,10h3.334  c0-5.521,4.29-10,9.583-10c0-7.363,5.723-13.333,12.78-13.333C74.03,57.461,81.179,50,90,50C85.554,39.414,85.554,22.252,90,11.666z  "/>
-        </svg>
-        <div class="sign_in_text_container">
-            <p class="welcome_text">Welcome</p>
-            <p class="bold_text">Sign in</p>
+    <div 
+        class="menu_container"
+        (mouseenter)="showLangMenu = true"
+        (mouseleave)="showLangMenu = false">
+        <div class="lang_cur_container trigger">
+            <p class="text_c lang_text">{{language}}</p>
+            <p class="text_c text_b curr_text">{{currency}}</p>
+        </div>
+        <div class="dropdown_menu" *ngIf="showLangMenu">
+            <div class="dropdown_menu_incont">
+                <p>Language</p>
+                <div class="select">
+                    <select name="language_cb">
+                        <option value="en">English</option>
+                        <option value="pl">Polish</option>
+                        <option value="ua">Ukrainian</option>
+                    </select>
+                </div>
+            </div>
+            <div class="dropdown_menu_incont">
+                <p>Currency</p>
+                <div class="select">
+                    <select name="currency_cb">
+                        <option value="usd">USD</option>
+                        <option value="eur">EUR</option>
+                        <option value="pln">PLN</option>
+                    </select>
+                </div>
+            </div>
+            <button class="confirm confirm_last" (click)="changeLanguageCurrency()">Confirm</button>
         </div>
     </div>
-    <div class="cart_container">
+    <div 
+        class="menu_container"
+        (mouseenter)="showUserMenu = true"
+        (mouseleave)="showUserMenu = false"
+        >
+        <div class="sign_in_container trigger">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 100 100" xml:space="preserve">
+                <path d="M90,11.666L88.333,10c-8.941,10.307-21.318,16.666-35,16.666v1.668c7.363,0,13.334,5.225,13.334,11.666  c0,3.77-3.522,7.012-8.652,8.717L55,36.666l-5,5l-5-5l-3.013,12.051c-5.135-1.705-8.654-4.947-8.654-8.717  c0-6.441,5.971-11.666,13.334-11.666v-1.668c-13.682,0-26.059-6.359-35-16.666L10,11.666C14.444,22.252,14.444,39.414,10,50  c8.819,0,15.972,7.461,15.972,16.667c7.057,0,12.778,5.97,12.778,13.333c5.293,0,9.583,4.479,9.583,10h3.334  c0-5.521,4.29-10,9.583-10c0-7.363,5.723-13.333,12.78-13.333C74.03,57.461,81.179,50,90,50C85.554,39.414,85.554,22.252,90,11.666z  "/>
+            </svg>
+            <div class="sign_in_text_container">
+                <p>Welcome</p>
+                <p class="bold_text">Sign in</p>
+            </div>
+        </div>
+        <div class="dropdown_menu" *ngIf="showUserMenu">
+            <button class="confirm" (click)="changeLanguageCurrency()">Sign In</button>
+            <a class="register" href="#registration">Register</a>
+        </div>
+    </div>
+    <div class="cart_container trigger">
         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 24 24" xml:space="preserve">
             <g id="shop-cart">
                 <g>
@@ -40,7 +78,7 @@
             </g>
         </svg>
         <div class="cart_text_container">
-            <div class="cart_counter">0</div>
+            <div class="cart_counter"><p>{{numberCartItems}}</p></div>
             <p class="bold_text">Cart</p>
         </div>
     </div>
