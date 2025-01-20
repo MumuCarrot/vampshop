@@ -1,12 +1,13 @@
 import { Component } from "@angular/core";
-import { HeaderComponent } from "../header/header.component";
+import { RouterOutlet} from "@angular/router";
 
+import { HeaderComponent } from "./header.component";
 import { Currency, Language } from "../enums";
 
 @Component({
     selector: "vamp-content",
     standalone: true,
-    imports: [HeaderComponent],
+    imports: [RouterOutlet, HeaderComponent],
     templateUrl: "./app.component.html",
     styleUrl: "./app.component.css"
 })

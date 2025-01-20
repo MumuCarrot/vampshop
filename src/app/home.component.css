@@ -1,0 +1,26 @@
+.day_deal_container {
+    margin-top: 125px;
+    height: 360px;
+    background: radial-gradient(circle, rgba(17,17,17,1) 0%, rgba(255,0,0,0.7) 50%, rgba(17,17,17,1) 100%);
+    transition: opacity 4s;
+}
+
+.day_deal_container:hover {
+    opacity: 0.5;
+}
+
+.day_deal_container_after {
+    height: 48px;
+    background-color: black;
+    display: flex;
+}
+
+.day_deal_container_after div {
+    flex: 1;
+    text-align: center;
+    align-content: center;
+}
+
+.store_header {
+    text-align: center;
+}
