@@ -12,12 +12,24 @@ import { Currency, Language } from "../enums";
 })
 export class HeaderComponent {
     @Input() currency!: Currency;
+    currencyCB: Currency;
+    currencies = Object.values(Currency);
     @Input() language!: Language;
+    languageCB: Language;
+    languages = Object.values(Language);
     @Input() numberCartItems!: number;
     
+    ngOnInit() {
+        this.currencyCB = this.currency;
+        this.languageCB = this.language;
+    }
+
     @Output() languageCurrencyChanged = new EventEmitter<[Currency, Language]>();
 
     changeLanguageCurrency() {
+        this.currency = this.currencyCB;
+        this.language = this.languageCB;
+        console.log([this.currency, this.language]);
         this.languageCurrencyChanged.emit([this.currency, this.language]);
     }
 
@@ -28,5 +40,9 @@ export class HeaderComponent {
 
     searchFor(request: string) {
         alert(`Searching for ${request}`);
+    }
+
+    getEnumLanguageKeyByValue(value: Language[keyof Language]): keyof Language | undefined {
+        return Object.keys(Language).find(key => (Language as any)[key] === value) as keyof Language | undefined;
     }
 }

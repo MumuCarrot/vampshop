@@ -10,8 +10,12 @@ header {
 }
 
 .logo {
+    height: 100%;
+    align-content: center;
+}
+
+.logo img {
     height: 80%;
-    margin: auto;
 }
 
 .search_container {

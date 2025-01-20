@@ -1,5 +1,7 @@
 <header>
-    <img class="logo" src="./logo.png">
+    <a class="logo" href="/">
+        <img src="./logo.png">
+    </a>
     <div class="search_container">
         <img class="vamp_teeth" src="./l_search.png">
         <form class="search_combinator">
@@ -17,27 +19,27 @@
         (mouseenter)="showLangMenu = true"
         (mouseleave)="showLangMenu = false">
         <div class="lang_cur_container trigger">
-            <p class="text_c lang_text">{{language}}</p>
-            <p class="text_c text_b curr_text">{{currency}}</p>
+            <p class="text_c lang_text" [textContent]="getEnumLanguageKeyByValue(language)"></p>
+            <p class="text_c text_b curr_text" [textContent]="currency"></p>
         </div>
         <div class="dropdown_menu" *ngIf="showLangMenu">
             <div class="dropdown_menu_incont">
                 <p>Language</p>
                 <div class="select">
-                    <select name="language_cb">
-                        <option value="en">English</option>
-                        <option value="pl">Polish</option>
-                        <option value="ua">Ukrainian</option>
+                    <select [(ngModel)]="languageCB">
+                        @for (lang of languages; track $index) {
+                            <option [value]="lang">{{lang}}</option>
+                        }
                     </select>
                 </div>
             </div>
             <div class="dropdown_menu_incont">
                 <p>Currency</p>
                 <div class="select">
-                    <select name="currency_cb">
-                        <option value="usd">USD</option>
-                        <option value="eur">EUR</option>
-                        <option value="pln">PLN</option>
+                    <select [(ngModel)]="currencyCB">
+                        @for (curr of currencies; track $index) {
+                            <option [value]="curr">{{curr}}</option>
+                        }
                     </select>
                 </div>
             </div>

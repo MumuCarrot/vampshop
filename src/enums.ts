@@ -1,7 +1,7 @@
 export enum Language {
-    EN = "EN",
-    PL = "PL",
-    UA = "UA"
+    EN = "English",
+    PL = "Polish",
+    UA = "Ukrainian"
 }
 export enum Currency {
     USD = "USD",
