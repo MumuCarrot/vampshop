@@ -77,12 +77,6 @@ header {
     fill: red;
 }
 
-.lang_cur_container {
-    display: flex;
-    flex-flow: column;
-    margin-right: 45px;
-}
-
 p {
     margin-top: 0;
     margin-bottom: 0;
@@ -94,14 +88,6 @@ p {
 
 .text_c {
     margin: 0 auto;
-}
-
-.lang_text {
-    font-size: 30px
-}
-
-.curr_text {
-    font-size: 14px
 }
 
 .sign_in_container {

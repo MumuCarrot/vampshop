@@ -50,5 +50,19 @@
     position: absolute;
     height: 100%;
     width: 0%;
-    background-color: red;
+    background-color: rgb(228, 0, 0);
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+a:hover {
+    border: 2px;
+}
+
+.price {
+    font-weight: 600;
+    font-size: 32px;
 }

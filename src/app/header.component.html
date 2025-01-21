@@ -16,38 +16,6 @@
     </div>
     <div 
         class="menu_container"
-        (mouseenter)="showLangMenu = true"
-        (mouseleave)="showLangMenu = false">
-        <div class="lang_cur_container trigger">
-            <p class="text_c lang_text" [textContent]="getEnumLanguageKeyByValue(language)"></p>
-            <p class="text_c text_b curr_text" [textContent]="currency"></p>
-        </div>
-        <div class="dropdown_menu" *ngIf="showLangMenu">
-            <div class="dropdown_menu_incont">
-                <p>Language</p>
-                <div class="select">
-                    <select [(ngModel)]="languageCB">
-                        @for (lang of languages; track $index) {
-                            <option [value]="lang">{{lang}}</option>
-                        }
-                    </select>
-                </div>
-            </div>
-            <div class="dropdown_menu_incont">
-                <p>Currency</p>
-                <div class="select">
-                    <select [(ngModel)]="currencyCB">
-                        @for (curr of currencies; track $index) {
-                            <option [value]="curr">{{curr}}</option>
-                        }
-                    </select>
-                </div>
-            </div>
-            <button class="confirm confirm_last" (click)="changeLanguageCurrency()">Confirm</button>
-        </div>
-    </div>
-    <div 
-        class="menu_container"
         (mouseenter)="showUserMenu = true"
         (mouseleave)="showUserMenu = false"
         >

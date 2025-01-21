@@ -1,15 +1,20 @@
 <div class="store_item_container">
-    <div class="store_item">
-        <img class="store_item_image" src="https://i.pinimg.com/736x/b6/bd/fb/b6bdfb6f7ef37ce95e8fbba6ec5a40a2.jpg">
-        <p class="item_name">Item name Super Gucci Item tusi tusi juicy...</p>
-        <div class="star_container">
-            <div class="star_bcg"></div>
-            <div class="star_fill"></div>
-            <img class="star" src="./star.png">
-            <img class="star" src="./star.png">
-            <img class="star" src="./star.png">
-            <img class="star" src="./star.png">
-            <img class="star" src="./star.png">
+    @for (item of storeData; track $index) {
+        <div class="store_item">
+            <a [routerLink]="['/p', item.id]">
+                <img class="store_item_image" src="https://i.pinimg.com/736x/b6/bd/fb/b6bdfb6f7ef37ce95e8fbba6ec5a40a2.jpg">
+                <p class="item_name">{{item.title}}</p>
+                <div class="star_container">
+                    <div class="star_bcg"></div>
+                    <div class="star_fill" [style.width.%]="item.raiting"></div>
+                    <img class="star" src="./star.png">
+                    <img class="star" src="./star.png">
+                    <img class="star" src="./star.png">
+                    <img class="star" src="./star.png">
+                    <img class="star" src="./star.png">
+                </div>
+                <div class="price">{{getPrice(item.price, "USD")}}$</div>
+            </a>
         </div>
-    </div>
+    }
 </div>
