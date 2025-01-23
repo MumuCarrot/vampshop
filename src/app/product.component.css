@@ -1,0 +1,223 @@
+:host {
+    display: flex;
+    flex-flow: column;
+}
+
+p {
+    margin: 0;
+    padding: 0;
+}
+
+hr {
+    width: 100%;
+}
+
+.product_container, .review_section {
+    display: flex;
+    max-width: 1200px;
+    margin: 30px auto 0;
+    width: 100%;
+}
+
+.product_info_container {
+    margin: 0 15px;
+}
+
+.store_item_image {
+    height: 500px;
+    width: 500px;
+}
+
+.item_title {
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.flex_container {
+    display: flex;
+}
+
+.star {
+    height: 30px;
+    width: 30px;
+}
+
+.price {
+    font-size: 32px;
+    font-weight: 600;
+    color: white;
+}
+
+.m_text {
+    margin: auto 15px auto 5px;
+}
+
+.block_select {
+    user-select: none;
+}
+
+.action_text {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.form_radio_group {
+	display: inline-block;
+	overflow: hidden;
+}
+
+.form_radio_group-item {
+	display: inline-block;  
+}
+
+.form_radio_group input[type=radio] {
+	display: none;
+}
+
+.form_radio_group label {
+	display: inline-block;
+	cursor: pointer;
+	padding: 0px 15px;
+	line-height: 34px;
+	border: 1px solid #999;
+	border-right: none;
+	user-select: none;
+}
+
+.form_radio_group .form_radio_group-item:first-child label {
+	border-radius: 6px 0 0 6px;
+}
+
+.form_radio_group .form_radio_group-item:last-child label {
+	border-radius: 0 6px 6px 0;
+	border-right: 1px solid #999;
+}
+
+.form_radio_group input[type=radio]:checked + label {
+	background: rgb(54, 54, 54);
+}
+
+.form_radio_group label:hover {
+	color: #666;
+}
+
+.form_radio_group input[type=radio]:disabled + label {
+	background: #efefef;
+	color: #666;
+}
+
+.deal_container {
+    margin: 30px 15px;
+    padding: 15px 10%;
+    border-radius: 16px;
+    background-color: #171717;
+    align-content: center;
+}
+
+.deal_container #buy_now, .deal_container #add_to_cart {
+    height: 40px;
+    width: 100%;
+    font-weight: 600;
+    border: 0;
+    color: white;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.deal_container #buy_now {
+    background-color: #e40000;
+}
+
+.deal_container #buy_now:hover {
+    background-color: #cc0000;
+}
+
+.deal_container #add_to_cart {
+    background-color: transparent;
+    border: 1.5px gray solid;
+    margin-bottom: 10px;
+}
+
+.deal_container #add_to_cart:hover {
+    background-color: rgb(26, 26, 26);
+}
+
+.quant_button, .quant_button_disable {
+    border-radius: 50%;
+    height: 24px;
+    width: 24px;
+    border: 1.5px gray solid;
+    background-color: transparent;
+}
+
+.quant_button {
+    color: white;
+    cursor: pointer;
+}
+
+.quant_button:hover {
+    background-color: rgb(26, 26, 26);
+}
+
+.quant_button_disable {
+    color: gray;
+    background-color: black;
+    cursor: auto;
+}
+
+.quant_text {
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.quant_val {
+    margin: auto 15px;
+    font-weight: 600;
+}
+
+.review_section {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 10px auto;
+    width: 100%;
+}
+
+.review_item {
+    display: flex;
+    flex-flow: column;
+    flex: 1;
+    margin: 1%;
+    padding: 1%;
+    max-width: 46%;
+    flex-basis: 46%;
+    background-color: #171717;
+    border-radius: 16px;
+}
+
+.review_title {
+    font-size: 32px;
+    font-weight: 600;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.rev_type {
+    margin: 15px 0;
+    color: lightgray;
+    font-weight: 600;
+}
+
+.user_dt {
+    flex: 1 1 auto;
+    color: lightgray;
+    align-content: end;
+    margin: 15px 0;
+    font-weight: 600;
+}
+
+.store_text {
+    text-align: center;
+}
