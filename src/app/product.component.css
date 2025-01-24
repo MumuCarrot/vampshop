@@ -163,7 +163,6 @@ hr {
 
 .quant_button_disable {
     color: gray;
-    background-color: black;
     cursor: auto;
 }
 
@@ -173,8 +172,10 @@ hr {
 }
 
 .quant_val {
-    margin: auto 15px;
+    margin: auto 0;
     font-weight: 600;
+    width: 30px;
+    text-align: center;
 }
 
 .review_section {
