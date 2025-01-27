@@ -1,26 +1,23 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
+import { RouterLink } from "@angular/router";
+
+import { CartService } from "./cart.service";
+import { SignService } from "./sign.service";
 
 @Component({
     selector: "header-comp",
     standalone: true,
-    imports: [FormsModule, CommonModule],
+    imports: [FormsModule, CommonModule, RouterLink],
     templateUrl: "./header.component.html",
     styleUrl: "./header.component.css"
 })
 export class HeaderComponent {
-    @Input() numberCartItems!: number;
+    constructor(public cart: CartService, public sign: SignService) {}
 
-    @Output() userWantToSignChanged = new EventEmitter<boolean>();
-    setUserWantToSign(bool: boolean) {
-        this.userWantToSignChanged.emit(bool);
-    }
-
-    s:string = "";
-    showLangMenu: boolean = false;
+    searchQuery:string = "";
     showUserMenu: boolean = false;
-    showCartMenu: boolean = false;
 
     searchFor(request: string) {
         alert(`Searching for ${request}`);

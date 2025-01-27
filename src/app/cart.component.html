@@ -1,0 +1,169 @@
+<div class="cart_container">
+    @if (!cart.isCartEmpty) {
+        <div class="panel">
+            <div class="cart_all_panel">
+                <p class="panel_topic">
+                    In your cart ({{cart.cartLength}})
+                </p>
+                <!-- // Main checkbox // -->
+                <div class="cart_all_panel_menu">
+                    <div class="checkbox_cont">
+                        <input 
+                            class="_checkbox" 
+                            type="checkbox"  
+                            id="all" 
+                            [(ngModel)]="masterChecked"
+                            (change)="toggleAllCheckboxes()"
+                            checked>
+                        <label for="all">
+                            <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" focusable="false" viewBox="0 0 12 12">
+                                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 7l3 3 7-7"/>
+                            </svg>
+                        </label>
+                    </div>
+                    <p class="select_all_text">
+                        Select all products
+                    </p>
+                    <p class="pipe">|</p>
+                    <p class="remove_selected" (click)="removeSelected()">
+                        Remove selected products
+                    </p>
+                </div>
+            </div>
+            <div class="cart_item_panel">
+                <!-- // Checkbox list // -->
+                @for (item of itemsInCart; track $index) {
+                    <div class="item_container">
+                        <div class="checkbox_cont">
+                            <input 
+                                class="_checkbox" 
+                                type="checkbox" 
+                                id="item-{{$index}}" 
+                                [checked]="checkboxStates[$index]"
+                                (change)="onCheckboxChange($index)">
+                            <label for="item-{{$index}}">
+                                <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" focusable="false" viewBox="0 0 12 12">
+                                    <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 7l3 3 7-7"/>
+                                </svg>
+                            </label>
+                        </div>
+                        <img class="store_item_image" [attr.src]="item?.photo ? item.photo : 'https://i.pinimg.com/736x/b6/bd/fb/b6bdfb6f7ef37ce95e8fbba6ec5a40a2.jpg'">
+                        <div class="item_content">
+                            <div class="item_top_line">
+                                <p class="item_name">{{item.title}}</p>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" class="trash" (click)="cart.removeItem(item.id)">
+                                    <g id="trash">
+                                        <rect class="trash-f" height="22" width="18" x="7" y="7"/>
+                                        <line class="trash-f" x1="3" x2="29" y1="7" y2="7"/>
+                                        <line class="trash-f" x1="13" x2="19" y1="3" y2="3"/>
+                                        <line class="trash-f" x1="13" x2="13" y1="12" y2="22"/>
+                                        <line class="trash-f" x1="19" x2="19" y1="12" y2="22"/>
+                                    </g>
+                                </svg>
+                            </div>
+                            <div class="item_possible_content"></div>
+                            <div class="item_bottom_line">
+                                <p class="item_price">{{item.price}}$</p>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                }
+            </div>
+        </div>
+        <div class="info">
+            <div class="summary">
+                <p class="panel_topic">Summary</p>
+                <div class="sum_line">
+                    <p class="sum_line_text">Value of products</p>
+                    <p>{{itemPrice}}$</p>
+                </div>
+                <div class="sum_line">
+                    <p class="sum_line_text">Shipping charge</p>
+                    <p>{{shippingCharge}}$</p>
+                </div>
+                <div class="sum_line">
+                    <p class="sum_line_text">Total</p>
+                    <p>{{totalPrice}}$</p>
+                </div>
+                <button id="buy_now" name="buy_now" (click)="lastOperation()">Buy</button>
+            </div>
+            <div class="sum_info">
+                <div class="sum_info_item">
+                    <div class="sii_title">
+                        <svg class="sii_svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+                            <path d="M100,175.69a5,5,0,0,1-2.23-.53L27.08,139.89a5,5,0,0,1-2.77-4.48V64.86a5,5,0,0,1,2.77-4.47L97.77,25.11a5,5,0,0,1,4.46,0l70.69,35.28a5,5,0,0,1,2.77,4.47v70.55a5,5,0,0,1-2.77,4.48l-70.69,35.27A5,5,0,0,1,100,175.69ZM34.31,132.32,100,165.1l65.69-32.78V68L100,35.17,34.31,68Zm136.38,3.09h0Z"/>
+                            <path d="M100,105a5,5,0,0,1-2.23-.52L27.09,69.34a5,5,0,1,1,4.45-9l68.46,34,68.46-34a5,5,0,1,1,4.45,9l-70.68,35.14A5,5,0,0,1,100,105Z"/>
+                            <path d="M135.34,87.43a5,5,0,0,1-2.22-.52L62.43,51.77a5,5,0,1,1,4.45-9L137.57,78a5,5,0,0,1-2.23,9.48Z"/>
+                            <path d="M100,175.69a5,5,0,0,1-5-5V100a5,5,0,0,1,10,0v70.69A5,5,0,0,1,100,175.69Z"/>
+                        </svg>
+                        <p class="sii_title_text">
+                            Fast delivery
+                        </p>
+                    </div>
+                    <p class="sii_text">
+                        ✔ $1.00 coupon code if delayed ✔ Refund if package lost ✔ Refund if items damaged ✔ Refund if no delivery in 30 days
+                    </p>
+                </div>
+                <hr style="background-color: gray; color: gray; border-color: gray;">
+                <div class="sum_info_item">
+                    <div class="sii_title">
+                        <svg class="sii_svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                            <path d="M439.84,178.43a11.62,11.62,0,0,0,.27-1.2,469.83,469.83,0,0,0,6.27-77.39,33.76,33.76,0,0,0-33.73-33.72,11.73,11.73,0,0,0-2.13.2L256,96,101.56,66.32a11.73,11.73,0,0,0-2.13-.2A33.76,33.76,0,0,0,65.7,99.84c0,56.93,9.65,110.46,28.68,159.1a383,383,0,0,0,63.24,106.8c45.59,54.39,90.89,77.92,92.8,78.9a11.32,11.32,0,0,0,5.15,1.24l.46,0,.48,0a11.35,11.35,0,0,0,5.15-1.24c1.5-.77,36.81-19.09,76.43-60.62,2.51.15,5,.24,7.54.24a124.44,124.44,0,0,0,94.21-205.83ZM256,421.78c-12.38-7.34-47.26-30.06-81.71-71.41-39.21-47.06-86-128.72-86-250.53a11.06,11.06,0,0,1,10.15-11l155.19,29.76a12.92,12.92,0,0,0,4.64,0L413.54,88.83a11.07,11.07,0,0,1,10.16,11,454.43,454.43,0,0,1-3.92,60c-48.71-36.15-118-32.16-162.18,12a124.45,124.45,0,0,0,53.18,207.52C286.47,402.64,265.16,416.38,256,421.78Zm161.59-90a101.77,101.77,0,1,1,0-144A101.93,101.93,0,0,1,417.63,331.82Z"/>
+                            <path d="M391,212.18l-70.76,74.93-29-30.73A11.34,11.34,0,0,0,274.69,272L312,311.46a11.33,11.33,0,0,0,16,.46,10.74,10.74,0,0,0,1.27-1.44l.06-.05,78.08-82.68A11.34,11.34,0,0,0,391,212.18Z"/>
+                        </svg>
+                        <p class="sii_title_text">
+                            Security & Privacy
+                        </p>
+                    </div>
+                    <p class="sii_text">
+                        Safe payments·Secure personal details
+                    </p>
+                </div>
+                <hr style="background-color: gray; color: gray; border-color: gray;">
+                <div class="sum_info_item">
+                    <div class="sii_title">
+                        <svg class="sii_svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                            <path d="M384.83,203.66h-5.51a123.68,123.68,0,0,0-246.63,0h-5.52a26,26,0,0,0-26,26v165.1a26,26,0,0,0,26,26H384.83a26,26,0,0,0,26-26V229.63A26,26,0,0,0,384.83,203.66ZM256,112.19a101.14,101.14,0,0,1,100.55,91.47H155.45A101.14,101.14,0,0,1,256,112.19ZM388.13,394.73a3.3,3.3,0,0,1-3.3,3.3H127.17a3.3,3.3,0,0,1-3.3-3.3V229.63a3.3,3.3,0,0,1,3.3-3.29H384.83a3.3,3.3,0,0,1,3.3,3.29Z"/>
+                            <path d="M255.61,250.81a40.88,40.88,0,0,0-11,80.27v29a11.34,11.34,0,1,0,22.68,0V330.86a40.89,40.89,0,0,0-11.73-80.05Zm0,59.09a18.21,18.21,0,1,1,18.21-18.2A18.22,18.22,0,0,1,255.61,309.9Z"/>
+                        </svg>
+                        <p class="sii_title_text">
+                            Safe Payments
+                        </p>
+                    </div>
+                    <img class="sii_img" src="./payment_partners.png">
+                    <p class="sii_text">
+                        With popular payment partners, your personal details are safe.
+                    </p>
+                </div>
+            </div>
+        </div>
+    }
+    @else {
+        <div class="cart_e">
+            <div class="cart_e_svg_container">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 24 24" xml:space="preserve">
+                    <g id="shop-cart">
+                        <g>
+                            <circle cx="9" cy="21" r="2"/>
+                        </g>
+                        <g>
+                            <circle cx="19" cy="21" r="2"/>
+                        </g>
+                        <g>
+                            <path d="M21,18H7.2l-4-16H0V0h4.8l0.8,3H24l-3.2,11H8.3l0.5,2H21V18z M7.8,12h11.5l2-7H6L7.8,12z"/>
+                        </g>
+                    </g>
+                </svg>
+            </div>
+            <p class="cart_e_text">Your cart is empty</p>
+            <div class="cart_e_button_menu">    
+                <button id="sign" (click)="sign.openSignPopup()">Sign in</button>
+                <button id="explore" [routerLink]="['/']">Explore items</button>
+            </div>
+        </div>
+    }
+</div>
+<hr style="max-width: 1200px;">
+<h1 class="store_text">You might like!</h1>
+<store-comp></store-comp>

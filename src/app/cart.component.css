@@ -1,0 +1,305 @@
+p {
+    margin: 0;
+    padding: 0;
+}
+
+.cart_container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 30px auto 0;
+    display: flex;
+}
+
+.cart_e {
+    margin: 100px auto;
+}
+
+.cart_e_svg_container {
+    height: 200px;
+    width: 200px;
+    margin: 0 auto;
+}
+
+.cart_e_svg_container svg {
+    height: 100%;
+    width: 100%;
+    fill: #171717;
+}
+
+.cart_e_text {
+    font-weight: 600;
+    text-align: center;
+}
+
+.cart_e_button_menu {
+    margin-top: 30px;
+    width: 300px;
+}
+
+.cart_e button {
+    width: 100%;
+    height: 40px;
+    border: 0;
+    border-radius: 16px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.cart_e #sign {
+    color: white;
+    background-color: #e40000;
+}
+
+.cart_e #sign:hover {
+    background-color: #cc0000;
+}
+
+.cart_e #explore {
+    margin-top: 15px;
+    background-color: transparent;
+    border: 1.5px gray solid;
+    color: white;
+}
+
+.cart_e #explore:hover {
+    background-color: #171717;
+}
+
+.panel {
+    flex: 1 1 auto;
+}
+
+.info {
+    flex: 0 1 auto;
+    margin-left: 20px;
+    max-width: 380px;
+}
+
+.cart_all_panel, .cart_item_panel, .summary, .sum_info {
+    background-color: #171717;
+    padding: 16px 24px;
+}
+
+.cart_item_panel {
+    margin-bottom: 30px;
+}
+
+.cart_item_panel, .sum_info {
+    margin-top: 10px;
+}
+
+.panel_topic {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.cart_all_panel_menu {
+    display: flex;
+}
+
+.pipe {
+    margin: 0 10px;
+    user-select: none;
+    color: gray;
+}
+
+.select_all_text {
+    margin-left: 10px;
+}
+
+.remove_selected {
+    color: #e40000;
+    cursor: pointer;
+}
+
+.remove_selected:hover {
+    color: #cc0000
+}
+
+.item_container {
+    display: flex;
+    height: 120px;
+}
+
+.sum_info {
+    margin-bottom: 25px;
+}
+
+.sum_info section {
+    padding: 16px 24px;
+}
+
+.sii_title {
+    display: flex;
+}
+
+.sii_svg {
+    fill: gray;
+    height: 25px;
+    width: 25px;
+}
+
+.sii_svg path {
+    fill: inherit;
+}
+
+.sii_title_text {
+    margin-left: 10px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.sii_text {
+    color: lightgray;
+}
+
+.sii_img {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.store_text {
+    text-align: center;
+}
+
+._checkbox {
+    display: none;
+}
+
+.checkbox_cont {
+    position: relative;
+    height: 24px;
+    width: 24px;
+}
+
+label {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    background-color: #f72414;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 0.2s ease transform, 0.2s ease background-color;
+    overflow: hidden;
+    z-index: 1;
+}
+
+label:before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 0;
+    left: 0;
+    width: 16px;
+    height: 16px;
+    margin: 0 auto;
+    background-color: #171717;
+    transform: translateY(-50%);
+    border-radius: 50%;
+    transition: 0.2s ease width, 0.2s ease height;
+}
+
+label:hover:before {
+    width: 14px;
+    height: 14px;
+}
+
+._checkbox:checked + label {
+    background-color: #07d410;
+}
+
+._checkbox:checked + label:before {
+    background-color: #07d41000;
+}
+
+._checkbox:checked ~ label .checkmark {
+    opacity: 1;
+}
+
+.checkmark {
+    height: 18px;
+    width: 18px;
+    margin: 3px;
+    opacity: 0;
+
+}
+
+.store_item_image {
+    height: 120px;
+    width: 120px;
+    margin: 0 15px 0 22px;
+}
+
+.item_name {
+    flex: 1 1 auto;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    line-clamp: 1;
+    margin-top: 4px;
+}
+
+.item_content {
+    display: flex;
+    flex-flow: column;
+    height: 100%;
+}
+
+.item_top_line {
+    flex: 0 1 auto;
+    display: flex;
+}
+
+.trash-f {
+    fill: none;
+    stroke: lightgray;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 2px;
+}
+
+.trash {
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+}
+
+.item_possible_content {
+    flex: 1 1 auto;
+}
+
+.item_bottom_line {
+    flex: 0 1 auto;
+    display: flex;
+}
+
+.item_price {
+    flex: 1 1 auto;
+    font-size: 24px;
+}
+
+.sum_line {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.sum_line_text {
+    flex: auto;
+}
+
+#buy_now {
+    width: 100%;
+    height: 40px;
+    border: 0;
+    border-radius: 16px;
+    cursor: pointer;
+    font-weight: 600;
+    color: white;
+    background-color: #e40000;
+}
+
+#buy_now:hover {
+    background-color: #cc0000;
+}

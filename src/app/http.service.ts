@@ -24,4 +24,11 @@ export class HttpService{
             return item;
         }));
     }
+
+    getItemsById(dataListName: string, dataParamName: string, idList: string[]): Observable<Item[]> {
+        return this.http.get<any>(dataListName).pipe(map((data: any) => {
+            let dataList = data[dataParamName];
+            return dataList.filter((item: any) => idList.includes(item.id));
+        }));
+    }
 }

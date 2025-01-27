@@ -1,12 +1,12 @@
 <header>
-    <a class="logo" href="/">
+    <a class="logo" [routerLink]="['/']">
         <img src="./logo.png">
     </a>
     <div class="search_container">
         <img class="vamp_teeth" src="./l_search.png">
         <form class="search_combinator">
-            <input class="vamp_search" type="text" placeholder="Search" [(ngModel)]="s" name="vamp_search" id="vamp_search">
-            <button class="search_button" (click)="searchFor(s)">
+            <input class="vamp_search" type="text" placeholder="Search" [(ngModel)]="searchQuery" name="vamp_search" id="vamp_search">
+            <button class="search_button" (click)="searchFor(searchQuery)">
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 18.651 18.651" height="36px" enable-background="new 0 0 18.651 18.651">
                     <path fill="#FFFFFF" fill-rule="evenodd" d="m9.324,4.667c-3.759,0-7.112,1.816-9.324,4.659 2.212,2.842 5.565,4.658 9.324,4.658 3.759,0 7.116-1.816 9.327-4.658-2.212-2.843-5.568-4.659-9.327-4.659zm-6.371,4.659c1.501-1.804 3.78-2.955 6.334-2.962-1.631,0.007-2.95,1.33-2.95,2.962 0,1.632 1.32,2.955 2.95,2.962-2.554-0.008-4.833-1.159-6.334-2.962zm5.075,0c0-0.703 0.568-1.272 1.271-1.272 0.7,0 1.268,0.569 1.268,1.272 0,0.699-0.568,1.271-1.268,1.271-0.702-1.77636e-15-1.271-0.572-1.271-1.271zm1.282,2.963c-0.002,0-0.004,0-0.007,0 1.635-0.002 2.96-1.328 2.96-2.963 0-1.636-1.325-2.961-2.96-2.963 0.002,0 0.004,0 0.007,0 2.564,0 4.851,1.154 6.357,2.963-1.506,1.809-3.793,2.963-6.357,2.963z"/>
                   </svg>
@@ -17,8 +17,7 @@
     <div 
         class="menu_container"
         (mouseenter)="showUserMenu = true"
-        (mouseleave)="showUserMenu = false"
-        >
+        (mouseleave)="showUserMenu = false">
         <div class="sign_in_container trigger">
             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 100 100" xml:space="preserve">
                 <path d="M90,11.666L88.333,10c-8.941,10.307-21.318,16.666-35,16.666v1.668c7.363,0,13.334,5.225,13.334,11.666  c0,3.77-3.522,7.012-8.652,8.717L55,36.666l-5,5l-5-5l-3.013,12.051c-5.135-1.705-8.654-4.947-8.654-8.717  c0-6.441,5.971-11.666,13.334-11.666v-1.668c-13.682,0-26.059-6.359-35-16.666L10,11.666C14.444,22.252,14.444,39.414,10,50  c8.819,0,15.972,7.461,15.972,16.667c7.057,0,12.778,5.97,12.778,13.333c5.293,0,9.583,4.479,9.583,10h3.334  c0-5.521,4.29-10,9.583-10c0-7.363,5.723-13.333,12.78-13.333C74.03,57.461,81.179,50,90,50C85.554,39.414,85.554,22.252,90,11.666z  "/>
@@ -29,11 +28,11 @@
             </div>
         </div>
         <div class="dropdown_menu" *ngIf="showUserMenu">
-            <button class="confirm" (click)="setUserWantToSign(true)">Sign In</button>
-            <a class="register" (click)="setUserWantToSign(true)">Register</a>
+            <button class="confirm" (click)="sign.openSignPopup()">Sign In</button>
+            <a class="register" (click)="sign.openSignPopup()">Register</a>
         </div>
     </div>
-    <div class="cart_container trigger">
+    <div class="cart_container trigger" [routerLink]="['./c']">
         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 24 24" xml:space="preserve">
             <g id="shop-cart">
                 <g>
@@ -48,7 +47,7 @@
             </g>
         </svg>
         <div class="cart_text_container">
-            <div class="cart_counter"><p>{{numberCartItems}}</p></div>
+            <div class="cart_counter"><p>{{cart.cartLength}}</p></div>
             <p class="bold_text">Cart</p>
         </div>
     </div>
