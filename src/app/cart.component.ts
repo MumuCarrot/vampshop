@@ -73,9 +73,7 @@ export class CartComponent implements OnInit {
 
     removeSelected() {
         let cbStateCopy: boolean[] = [...this.checkboxStates];
-        console.log(cbStateCopy)
         let itemIdListCopy: string[] = this.itemsInCart.map(item => item.id.toString());
-        console.log(itemIdListCopy)
         for (let i = 0; i < cbStateCopy.length; i++) {
             if (cbStateCopy[i]) {
                 this.cart.removeItem(itemIdListCopy[i]);

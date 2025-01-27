@@ -15,6 +15,11 @@
                     "polyfills": ["zone.js"],
                     "tsConfig": "tsconfig.json",
                     "aot": true,
+                    "styles": [
+                        {
+                            "input": "src/styles.css"
+                        }
+                    ],
                     "assets": [
                             {
                                 "glob": "**/*",
