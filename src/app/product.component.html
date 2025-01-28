@@ -55,7 +55,7 @@
                 <button class="quant_button" (click)="changeQuantity(true)">+</button>
             </div>
             <button id="buy_now" name="buy_now">Buy now</button>
-            <button id="add_to_cart" name="add_to_cart">Add to cart</button>
+            <button id="add_to_cart" name="add_to_cart" (click)="cart.addItem(item.id, quantity)">Add to cart</button>
         </div>
     </div>
 </div>

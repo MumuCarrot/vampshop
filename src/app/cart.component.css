@@ -303,3 +303,36 @@ label:hover:before {
 #buy_now:hover {
     background-color: #cc0000;
 }
+
+.flex_container {
+    display: flex;
+}
+
+.quant_button, .quant_button_disable {
+    border-radius: 50%;
+    height: 24px;
+    width: 24px;
+    border: 1.5px gray solid;
+    background-color: transparent;
+}
+
+.quant_button {
+    color: white;
+    cursor: pointer;
+}
+
+.quant_button:hover {
+    background-color: rgb(26, 26, 26);
+}
+
+.quant_button_disable {
+    color: gray;
+    cursor: auto;
+}
+
+.quant_val {
+    margin: auto 0;
+    font-weight: 600;
+    width: 30px;
+    text-align: center;
+}

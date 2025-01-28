@@ -23,8 +23,8 @@ export class CartComponent implements OnInit {
         this.cartServiceObservable = this.cart.idList$;    
     }
     
-    cartServiceObservable: Observable<string[]>;
-    itemsInCart: Item[] = [];
+    cartServiceObservable: Observable<[string, number][]>;
+    itemsInCart: [Item, number][] = [];
     itemPrice: number = 0;
     shippingCharge: number = 0;
     totalPrice: number = 0;
@@ -36,12 +36,21 @@ export class CartComponent implements OnInit {
     searchForDataById(): void {
         this.cartServiceObservable.
             subscribe((idList) => {
-                this.http.getItemsById("./data.json", "dataList", idList).
+                this.http.getItemsById("./data.json", "dataList", idList.map(([str, _]) => str)).
                 subscribe({
                     next:(data: Item[]) => {
-                        this.itemsInCart = data;
+                        this.itemsInCart = this.cart.cartIdList.map(([id, count]) => {
+                            const item = data.find((item) => item.id.toString() === id);
+
+                            if (!item) {
+                                throw new Error(`Item with id "${id}" not found in server response.`);
+                            }
+
+                            return [item, count];
+                        });
                         
-                        this.itemPrice = Number((this.itemsInCart.reduce((sum, item) => sum + item.price, 0)).toFixed(2));
+                        this.itemPrice = Number((this.itemsInCart.map(([item, _]) => item).
+                            reduce((sum, item) => sum + item.price, 0)).toFixed(2));
                         this.shippingCharge = Number((((this.itemPrice * 5) / 100)).toFixed(2));
                         this.totalPrice = Number((this.itemPrice + this.shippingCharge).toFixed(2))
                         
@@ -73,11 +82,24 @@ export class CartComponent implements OnInit {
 
     removeSelected() {
         let cbStateCopy: boolean[] = [...this.checkboxStates];
-        let itemIdListCopy: string[] = this.itemsInCart.map(item => item.id.toString());
+        let itemIdListCopy: string[] = this.itemsInCart.map(([item, _]) => item.id.toString());
         for (let i = 0; i < cbStateCopy.length; i++) {
             if (cbStateCopy[i]) {
-                this.cart.removeItem(itemIdListCopy[i]);
+                this.cart.removeItem(itemIdListCopy[i], 999);
             }
+        }
+    }
+
+    changeQuantity(item: [Item, number], direction: boolean) {
+        const index = this.itemsInCart.findIndex((a_item) => a_item == item);
+        if (index >= 0) {
+            if (direction) {
+                this.itemsInCart[index][1] += 1;
+            }
+            else if (this.itemsInCart[index][1] > 1) {
+                this.itemsInCart[index][1] -= 1;
+            }
+            this.cart.quantityForId = [this.itemsInCart[index][0].id.toString(), this.itemsInCart[index][1]];
         }
     }
 }

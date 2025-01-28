@@ -3,6 +3,7 @@ import { ActivatedRoute } from "@angular/router";
 import { CommonModule } from "@angular/common";
 
 import { HttpService } from "./http.service";
+import { CartService } from "./cart.service";
 import { Item } from "./item";
 import { StoreComponent } from "./store.component";
 import { Review } from "./review";
@@ -24,7 +25,8 @@ export class ProductComponent implements OnInit {
     quantity: number = 1;
 
     constructor(private route: ActivatedRoute,
-                private httpService: HttpService
+                private httpService: HttpService,
+                private cart: CartService
     ) {}
 
     changeQuantity(direction: boolean) {

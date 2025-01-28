@@ -47,11 +47,11 @@
                                 </svg>
                             </label>
                         </div>
-                        <img class="store_item_image" [attr.src]="item?.photo ? item.photo : 'https://i.pinimg.com/736x/b6/bd/fb/b6bdfb6f7ef37ce95e8fbba6ec5a40a2.jpg'">
+                        <img class="store_item_image" [attr.src]="item[0]?.photo ? item[0].photo : 'https://i.pinimg.com/736x/b6/bd/fb/b6bdfb6f7ef37ce95e8fbba6ec5a40a2.jpg'">
                         <div class="item_content">
                             <div class="item_top_line">
-                                <p class="item_name">{{item.title}}</p>
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" class="trash" (click)="cart.removeItem(item.id)">
+                                <p class="item_name">{{item[0].title}}</p>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" class="trash" (click)="cart.removeItem(item[0].id, item[1])">
                                     <g id="trash">
                                         <rect class="trash-f" height="22" width="18" x="7" y="7"/>
                                         <line class="trash-f" x1="3" x2="29" y1="7" y2="7"/>
@@ -63,7 +63,12 @@
                             </div>
                             <div class="item_possible_content"></div>
                             <div class="item_bottom_line">
-                                <p class="item_price">{{item.price}}$</p>
+                                <p class="item_price">{{item[0].price}}$</p>
+                                <div class="flex_container">
+                                    <button [ngClass]="item[1] > 1 ? 'quant_button' : 'quant_button_disable'" (click)="changeQuantity(item, false)">-</button>
+                                    <p class="quant_val">{{item[1]}}</p>
+                                    <button class="quant_button" (click)="changeQuantity(item, true)">+</button>
+                                </div>
                             </div>
                         </div>
                     </div>
