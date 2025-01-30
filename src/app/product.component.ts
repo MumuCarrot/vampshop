@@ -41,7 +41,7 @@ export class ProductComponent implements OnInit {
             let dataList = "./data.json";
             let dataAttribute = "dataList";
             if (this.id != '')
-                this.httpService.getItemById(dataList, dataAttribute, this.id).
+                this.httpService.getItemById(this.id).
                     subscribe({next: (data: Item) => {
                         this.item = data;
                         this.productHaveReview = typeof this.item.reviews != "undefined" ? true : false;

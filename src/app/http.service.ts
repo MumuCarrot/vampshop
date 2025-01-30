@@ -6,29 +6,18 @@ import { Item } from "./item";
 @Injectable()
 export class HttpService{
   
+    private static readonly HOSTNAME: string = "http://localhost:3000";
     constructor(private http: HttpClient) {}
-      
-    getData(dataListName: string, dataParamName: string): Observable<Item[]> {
-        return this.http.get(dataListName).pipe(map((data: any) => {
-            let dataList = data[dataParamName];
-            return dataList.map(function(item: any): Item {
-                return new Item(item.id, item.price, item.title, item.raiting, item.reviews, item.color, item.size, item.photo);
-            });
-        }));
+
+    getData(): Observable<Object> {
+        return this.http.get(`${HttpService.HOSTNAME}/data`);
     }
 
-    getItemById(dataListName: string, dataParamName: string, id: string): Observable<Item> {
-        return this.http.get<any>(dataListName).pipe(map((data: any) => {
-            let dataList = data[dataParamName];
-            const item = dataList.find((obj: any) => obj.id === id);
-            return item;
-        }));
+    getItemById(id: string): Observable<Object> {
+        return this.http.get(`${HttpService.HOSTNAME}/data/${id}`);
     }
 
-    getItemsById(dataListName: string, dataParamName: string, idList: string[]): Observable<Item[]> {
-        return this.http.get<any>(dataListName).pipe(map((data: any) => {
-            let dataList = data[dataParamName];
-            return dataList.filter((item: any) => idList.includes(item.id));
-        }));
+    getItemsById(idList: string[]): Observable<Object> {
+        return this.http.get(`${HttpService.HOSTNAME}/data?ids=${idList.join(',')}`);
     }
 }

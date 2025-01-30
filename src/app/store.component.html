@@ -1,27 +1,32 @@
 <div class="store_item_container">
-    @for (item of storeData; track $index) {
-        <div class="store_item">
-            <a [routerLink]="['/p', item.id]">
-                <div class="store_item_image_container">
-                    <div class="store_item_add_to_cart_container" (click)="addToCart($event, item.id)">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                            <path d="M11 9h2V6h3V4h-3V1h-2v3H8v2h3v3zm-4 9c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2zm-9.83-3.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.86-7.01L19.42 4h-.01l-1.1 2-2.76 5H8.53l-.13-.27L6.16 6l-.95-2-.94-2H1v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.13 0-.25-.11-.25-.25z"/>
-                        </svg>
+    @if(httpDone) {
+        @for (item of storeData; track $index) {
+            <div class="store_item">
+                <a [routerLink]="['/p', item.id]">
+                    <div class="store_item_image_container">
+                        <div class="store_item_add_to_cart_container" (click)="addToCart($event, item.id)">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                <path d="M11 9h2V6h3V4h-3V1h-2v3H8v2h3v3zm-4 9c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2zm-9.83-3.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.86-7.01L19.42 4h-.01l-1.1 2-2.76 5H8.53l-.13-.27L6.16 6l-.95-2-.94-2H1v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.13 0-.25-.11-.25-.25z"/>
+                            </svg>
+                        </div>
+                        <img class="store_item_image" [attr.src]="item.photo ? item.photo : 'https://i.pinimg.com/736x/b6/bd/fb/b6bdfb6f7ef37ce95e8fbba6ec5a40a2.jpg'">
                     </div>
-                    <img class="store_item_image" [attr.src]="item.photo ? item.photo : 'https://i.pinimg.com/736x/b6/bd/fb/b6bdfb6f7ef37ce95e8fbba6ec5a40a2.jpg'">
-                </div>
-                <p class="item_name">{{item.title}}</p>
-                <div class="star_container">
-                    <div class="star_bcg"></div>
-                    <div class="star_fill" [style.width.%]="item.raiting"></div>
-                    <img class="star" src="./star.png">
-                    <img class="star" src="./star.png">
-                    <img class="star" src="./star.png">
-                    <img class="star" src="./star.png">
-                    <img class="star" src="./star.png">
-                </div>
-                <div class="price">{{item.price}}$</div>
-            </a>
-        </div>
+                    <p class="item_name">{{item.title}}</p>
+                    <div class="star_container">
+                        <div class="star_bcg"></div>
+                        <div class="star_fill" [style.width.%]="item.raiting"></div>
+                        <img class="star" src="./star.png">
+                        <img class="star" src="./star.png">
+                        <img class="star" src="./star.png">
+                        <img class="star" src="./star.png">
+                        <img class="star" src="./star.png">
+                    </div>
+                    <div class="price">{{item.price}}$</div>
+                </a>
+            </div>
+        }
+    }
+    @else {
+        Uploading your data...
     }
 </div>

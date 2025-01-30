@@ -36,7 +36,7 @@ export class CartComponent implements OnInit {
     searchForDataById(): void {
         this.cartServiceObservable.
             subscribe((idList) => {
-                this.http.getItemsById("./data.json", "dataList", idList.map(([str, _]) => str)).
+                this.http.getItemsById(idList.map(([str, _]) => str)).
                 subscribe({
                     next:(data: Item[]) => {
                         this.itemsInCart = this.cart.cartIdList.map(([id, count]) => {

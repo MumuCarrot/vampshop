@@ -13,7 +13,8 @@ import { CartService } from "./cart.service";
     styleUrl: "store.component.css"
 })
 export class StoreComponent implements OnInit {
-    storeData!: Item[];
+    storeData: Item[] | undefined;
+    httpDone: boolean = false;
 
     constructor(private httpService: HttpService, public cart: CartService) {}
 
@@ -24,11 +25,10 @@ export class StoreComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.httpService.getData("./data.json", "dataList").
+        this.httpService.getData().
         subscribe({
-            next: (data: Item[]) => {
-                this.storeData = data;
-            }
+            next: (data: any) => { this.storeData = data["dataList"]; this.httpDone = true; },
+            error: error => console.log(error)
         });
     }
 }
