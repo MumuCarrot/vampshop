@@ -51,6 +51,24 @@ app.get('/data', jsonParser, (req, res) => {
     }
 });
 
+// Data endpoint for day deal
+app.get('/daydeal', jsonParser, (req, res) => {
+    const ids = ["1", "2", "3"];
+    const data = getData().dataList;
+
+    const filteredItems = data.filter(product => ids.includes(product.id));
+    res.json(filteredItems);
+});
+
+// Data endpoint for you should see
+app.get('/youshouldsee', jsonParser, (req, res) => {
+    const ids = ["1", "2", "3"];
+    const data = getData().dataList;
+
+    const filteredItems = data.filter(product => ids.includes(product.id));
+    res.json(filteredItems);
+});
+
 // Angular dist startup
 app.get('*', (_, res) => {
     res.sendFile(path.join(appPath, 'index.html'));

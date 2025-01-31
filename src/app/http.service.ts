@@ -1,7 +1,6 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import { map, Observable } from "rxjs";
-import { Item } from "./item";
   
 @Injectable()
 export class HttpService{
@@ -19,5 +18,13 @@ export class HttpService{
 
     getItemsById(idList: string[]): Observable<Object> {
         return this.http.get(`${HttpService.HOSTNAME}/data?ids=${idList.join(',')}`);
+    }
+
+    getDayDeal(): Observable<Object> {
+        return this.http.get(`${HttpService.HOSTNAME}/daydeal`);
+    }
+
+    getYouShouldSee(): Observable<Object> {
+        return this.http.get(`${HttpService.HOSTNAME}/youshouldsee`);
     }
 }

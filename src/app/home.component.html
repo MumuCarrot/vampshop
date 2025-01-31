@@ -1,9 +1,70 @@
-<div class="day_deal_container_before"></div>
-<div class="day_deal_container"></div>
-<div class="day_deal_container_after">
+<!-- // Day deal // -->
+
+<h1 class="title_text">Day deal</h1>
+
+<div class="deal_before"></div>
+
+<div class="deal_container">
+    <div class="deal_promotion">
+        @if (httpDayDealReady) {
+            @for (item of dayDeal; track $index) {
+                <div class="deal_item" [routerLink]="['/p', item.id]">
+                    <div>
+                        <img class="deal_item_image" [attr.src]="item.photo ? item.photo : 'https://i.pinimg.com/736x/b6/bd/fb/b6bdfb6f7ef37ce95e8fbba6ec5a40a2.jpg'">
+                    </div>
+                </div>
+            }
+        }
+    </div>
+    <div class="bcg day_deal"></div>
+</div>
+
+<div class="deal_after">
     <div><b>Free 8-day-avg</b> delivery on Choice items</div>
     <div><b>Fast delivery</b> Get refunds for any issues</div>
     <div><b>Free returns</b> Within 90 days</div>
 </div>
-<h1 class="store_header">Not only brand</h1>
+
+<!-- // You should see // -->
+
+<h1 class="title_text before" style="margin-top: 100px;">You should see</h1>
+
+<div class="deal_before"></div>
+
+<div class="deal_container">
+    <div class="deal_promotion">
+        @if (httpYouShouldSeeReady) {
+            @for(item of youShouldSee; track $index) {
+                <div class="deal_item" [routerLink]="['/p', item.id]">
+                    <div>
+                        <img class="deal_item_image" [attr.src]="item.photo ? item.photo : 'https://i.pinimg.com/736x/b6/bd/fb/b6bdfb6f7ef37ce95e8fbba6ec5a40a2.jpg'">
+                    </div>
+                </div>
+            }
+        }
+    </div>
+    <div class="bcg new_deal">
+        <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+            <defs>
+                <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+            </defs>
+            <g class="parallax">
+                <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(207, 25, 25, 0.7)" />
+                <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(207, 25, 25, 0.5)" />
+                <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(207, 25, 25, 0.3)" />
+                <use xlink:href="#gentle-wave" x="48" y="7" fill="rgba(207, 25, 25, 1)" />
+            </g>
+        </svg>
+    </div>
+</div>
+
+<div class="deal_after">
+    <div><b>You need it</b> we looked it up just for you</div>
+    <div><b>Users like it</b> users with similar tastes bought it</div>
+</div>
+
+<!-- // Store // -->
+
+<h1 class="title_text before">Not only brand</h1>
+
 <store-comp></store-comp>

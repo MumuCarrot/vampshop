@@ -1,31 +1,122 @@
-.day_deal_container {
+.title_text {
+    text-align: center;
+}
+
+.title_text.before {
+    margin-top: 100px;
+}
+
+.deal_container {
+    position: relative;
+}
+
+.deal_container div {
     height: 360px;
-    background: radial-gradient(circle, rgba(17,17,17,1) 0%, rgba(255,0,0,0.7) 50%, rgba(17,17,17,1) 100%);
-    transition: opacity 4s;
 }
 
-.day_deal_container:hover {
-    opacity: 0.5;
+.deal_promotion {
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    display: flex;
+    margin: 0 auto;
 }
 
-.day_deal_container_before {
+.deal_item {
+    flex: 1;
+    align-content: center;
+}
+
+.deal_item div {
+    height: 200px;
+    width: 200px;
+    margin: 0 auto;
+}
+
+.deal_item_image {
+    height: inherit;
+    width: inherit;
+    cursor: pointer;
+    border: 2px #111111 solid;
+}
+
+.deal_before {
     margin-top: 40px;
     height: 20px;
     background-color: black;
 }
 
-.day_deal_container_after {
+.deal_after {
     height: 48px;
     background-color: black;
     display: flex;
 }
 
-.day_deal_container_after div {
+.deal_after div {
     flex: 1;
     text-align: center;
     align-content: center;
 }
 
-.store_header {
-    text-align: center;
+.bcg {
+    position: absolute;
+    z-index: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.bcg.day_deal {
+    background: radial-gradient(circle, rgba(17,17,17,1) 0%, rgba(255,0,0,0.7) 50%, rgba(17,17,17,1) 100%);
+    transition: opacity 4s;
+}
+
+.deal_container:hover .bcg.day_deal {
+    opacity: 0.5;
+}
+
+.bcg.new_deal {
+    background: linear-gradient(90deg, rgba(17,17,17,1) 0%, rgba(134,0,0,1) 50%, rgba(17,17,17,1) 100%);
+}
+
+.waves {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    margin-bottom: -7px;
+    min-height:100px;
+    max-height:150px;
+}
+
+.parallax > use {
+    animation: move-forever 25s cubic-bezier(.55,.5,.45,.5) infinite;
+}
+
+.parallax > use:nth-child(1) {
+    animation-delay: -2s;
+    animation-duration: 7s;
+}
+
+.parallax > use:nth-child(2) {
+    animation-delay: -3s;
+    animation-duration: 10s;
+}
+
+.parallax > use:nth-child(3) {
+    animation-delay: -4s;
+    animation-duration: 13s;
+}
+
+.parallax > use:nth-child(4) {
+    animation-delay: -5s;
+    animation-duration: 20s;
+}
+
+@keyframes move-forever {
+    0% {
+        transform: translate3d(-90px,0,0);
+    }
+    100% { 
+        transform: translate3d(85px,0,0);
+    }
 }
