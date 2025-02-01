@@ -101,10 +101,11 @@ app.post('/user/create', jsonParser, (req, res) => {
     const data = getData('userlist.json');
     const userList = data.userList;
 
-    if (data.find(user => user.login == req.body.user.login)) {
+    if (userList.find(user => user.login == req.body.user.login)) {
         res.status(409).send({ error: 'User already exists' });
     }
     else {
+        console.log("No users mathced")
         const newUser = {
             id: userList.length + 1,
             login: req.body.user.login,
@@ -121,16 +122,22 @@ app.post('/user/create', jsonParser, (req, res) => {
 });
 
 // Data endpoint to update user data
-app.post('/user/update', jsonParser, (req, res) => {
+app.put('/user/update', jsonParser, (req, res) => {
     const data = getData('userlist.json');
     const userList = data.userList;
 
-    const user = userList.find(user => user.id == req.body.id);
+    const user = userList.find(user => user.id == req.body.user.id);
     if (user) {
-        user.email = req.body.email;
-        user.phone = req.body.phone;
+        const newUser = {
+            id: userList.length + 1,
+            login: req.body.user.login,
+            name: req.body.user.name,
+            email: req.body.user.email,
+            phone: req.body.user.phone,
+            password: req.body.user.password
+        };
         fs.writeFileSync(path.join(__dirname, 'userlist.json'), JSON.stringify(data, null, 2));
-        res.json(user);
+        res.json({ status: true });
     }
     else {
         res.status(404).send({ error: 'User not found' });

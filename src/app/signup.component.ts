@@ -38,7 +38,7 @@ export class SignUpComponent {
     }
 
     userNameCheck(name: string): boolean {
-        const regex = /^[a-zA-Z0-9]{1,}$/;
+        const regex = /^[a-zA-Z0-9 ]{1,}$/;
         return regex.test(name);
     }
 
@@ -55,7 +55,7 @@ export class SignUpComponent {
     
     phoneCheck(phone: string): boolean {
         if (phone.length == 0) return true;
-        const regex = /^\+[0-9]{14}$/;
+        const regex = /^\+[0-9]{8,14}$/;
         return regex.test(phone);
     }
 
@@ -71,6 +71,7 @@ export class SignUpComponent {
         if (!this.comparePasswords(this.user.userData.password, this.passwordConfiramtion)) this.alert.push('Passwords do not match');
         if (!this.emailCheck(this.user.userData.email)) this.alert.push('Email is not valid');
         if (!this.phoneCheck(this.user.userData.phone)) this.alert.push('Phone is not valid');
+        console.log(this.alert + " length > 0 " + (this.alert.length > 0));
         if (this.alert.length > 0) return;
 
         this.http.addUser(this.user.userData).
@@ -79,7 +80,7 @@ export class SignUpComponent {
                     this.user.userData = data;
                     this.router.navigate(['/']);
                 },
-                error: (err: any) => this.alert = err.error?.error || 'Unknown error'
+                error: (err: any) => this.alert.push(err.error?.error || 'Unknown error')
             });
     }
 }
