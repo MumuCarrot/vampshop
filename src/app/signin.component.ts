@@ -11,7 +11,7 @@ import { UserService } from './user.service';
     standalone: true,
     imports: [FormsModule, RouterModule],
     templateUrl: './signin.component.html',
-    styleUrl: './signin.component.css',
+    styleUrl: './uaccmenu.css',
     providers: [HttpService]
 })
 export class SignInComponent {

@@ -8,6 +8,7 @@ import { ErrorComponent } from "./error.component";
 import { CartComponent } from "./cart.component"
 import { SignInComponent } from "./signin.component"
 import { SignUpComponent } from "./signup.component"
+import { ProfileComponent } from "./profile.component"
 
 const appRoutes: Routes = [
     { path: "", component: HomeComponent },
@@ -15,6 +16,7 @@ const appRoutes: Routes = [
     { path: "c", component: CartComponent},
     { path: "si", component: SignInComponent},
     { path: "su", component: SignUpComponent},
+    { path: "up", component: ProfileComponent},
     { path: "**", component: ErrorComponent }
 ];
 

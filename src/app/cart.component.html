@@ -163,7 +163,9 @@
             </div>
             <p class="cart_e_text">Your cart is empty</p>
             <div class="cart_e_button_menu">    
-                <button id="sign" (click)="sign.openSignPopup()">Sign in</button>
+                @if (!user.isUserLoggedIn) {
+                    <button id="sign" (click)="sign.openSignPopup()">Sign in</button>
+                }
                 <button id="explore" [routerLink]="['/']">Explore items</button>
             </div>
         </div>

@@ -105,7 +105,6 @@ app.post('/user/create', jsonParser, (req, res) => {
         res.status(409).send({ error: 'User already exists' });
     }
     else {
-        console.log("No users mathced")
         const newUser = {
             id: userList.length + 1,
             login: req.body.user.login,
@@ -126,17 +125,13 @@ app.put('/user/update', jsonParser, (req, res) => {
     const data = getData('userlist.json');
     const userList = data.userList;
 
-    const user = userList.find(user => user.id == req.body.user.id);
-    if (user) {
-        const newUser = {
-            id: userList.length + 1,
-            login: req.body.user.login,
-            name: req.body.user.name,
-            email: req.body.user.email,
-            phone: req.body.user.phone,
-            password: req.body.user.password
+    const userIndex = userList.findIndex(user => user.id == req.body.user.id);
+    if (userIndex !== -1) {
+        userList[userIndex] = {
+            ...userList[userIndex],
+            ...req.body.user
         };
-        fs.writeFileSync(path.join(__dirname, 'userlist.json'), JSON.stringify(data, null, 2));
+        fs.writeFileSync(path.join(__dirname, 'userlist.json'), JSON.stringify({ userList }, null, 2));
         res.json({ status: true });
     }
     else {

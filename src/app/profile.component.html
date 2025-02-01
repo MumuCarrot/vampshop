@@ -1,0 +1,19 @@
+<div class="form_container">
+    <div class="side_gradient"></div>
+    <div class="form">
+        <h1>Profile settings</h1>
+        <h2>All * fields must be filled in</h2>
+        <input type="text" [(ngModel)]="user.userData.login" placeholder="* Login" id="login" autocomplete="off" (keypress)="onKeyPress($event)">
+        <input type="text" [(ngModel)]="user.userData.name" placeholder="* Username" id="username" autocomplete="off" (keypress)="onKeyPress($event)">
+        <input type="text" [(ngModel)]="user.userData.email" placeholder="Email" autocomplete="off" (keypress)="onKeyPress($event)">
+        <input type="text" [(ngModel)]="user.userData.phone" placeholder="Phone" autocomplete="off" (keypress)="onKeyPress($event)">
+        @for (err of alert; track $index) {
+            <p class="alert">{{err}}</p>
+        }
+        @if (status) {
+            <p class="message">Profile updated</p>
+        }
+        <button (click)="signContinuation()">Confirm</button>
+        <p class="log_out" (click)="signOut()">Log out</p>
+    </div>
+</div>

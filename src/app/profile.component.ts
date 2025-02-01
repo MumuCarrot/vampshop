@@ -5,26 +5,23 @@ import { Router, RouterModule } from "@angular/router";
 import { HttpService } from './http.service';
 import { SignService } from './sign.service';
 import { UserService } from './user.service';
-import { User } from './user';
 
 @Component({
-    selector: 'signup-comp',
+    selector: 'profile-comp',
     standalone: true,
     imports: [FormsModule, RouterModule],
-    templateUrl: './signup.component.html',
+    templateUrl: './profile.component.html',
     styleUrl: './uaccmenu.css',
     providers: [HttpService]
 })
-export class SignUpComponent {
+export class ProfileComponent {
     constructor(public sign: SignService, 
                 public http: HttpService, 
                 public user: UserService,
-                public router: Router) {
-        user.userData = new User();
-    }
+                public router: Router) {}
 
-    passwordConfiramtion: string = '';
     alert: string[] = [];
+    status: boolean = false;
 
     onKeyPress(event: KeyboardEvent): void { 
         if (event.key === "Enter") {
@@ -59,27 +56,27 @@ export class SignUpComponent {
         return regex.test(phone);
     }
 
-    comparePasswords(password: string, confirmationPassword: string): boolean {
-        return password === confirmationPassword;
-    }
-
     signContinuation() {
+        if (this.user.userData === undefined) return;
+
         this.alert = [];
         if (!this.loginCheck(this.user.userData.login)) this.alert.push('Login must contain at least 3 letters and 6 characters');
         if (!this.userNameCheck(this.user.userData.name)) this.alert.push('Name must contain only letters or numbers');
-        if (!this.passwordCheck(this.user.userData.password)) this.alert.push('Password must contain only letters or numbers');
-        if (!this.comparePasswords(this.user.userData.password, this.passwordConfiramtion)) this.alert.push('Passwords do not match');
         if (!this.emailCheck(this.user.userData.email)) this.alert.push('Email is not valid');
         if (!this.phoneCheck(this.user.userData.phone)) this.alert.push('Phone is not valid');
         if (this.alert.length > 0) return;
 
-        this.http.addUser(this.user.userData).
+        this.http.updateUser(this.user.userData).
             subscribe({
                 next: (data: any) => { 
-                    this.user.userData = data;
-                    this.router.navigate(['/']);
+                    this.status = data.status;
                 },
-                error: (err: any) => this.alert.push(err.error?.error || 'Unknown error')
+                error: (err: any) => this.alert = err.error?.error || 'Unknown error'
             });
+    }
+
+    signOut() {
+        this.user.signOut();
+        this.router.navigate(['/']);
     }
 }

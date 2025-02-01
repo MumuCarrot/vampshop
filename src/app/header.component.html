@@ -24,15 +24,31 @@
             </svg>
             <div class="sign_in_text_container">
                 <p>Welcome</p>
-                <p class="bold_text">Sign in</p>
+                <p class="bold_text">
+                    @if(!user.isUserLoggedIn) {
+                        Sign in
+                    }
+                    @else {
+                        {{user.userData.name}}
+                    }
+                </p>
             </div>
         </div>
         <div class="dropdown_menu" *ngIf="showUserMenu">
-            <button class="confirm" (click)="sign.openSignPopup()">Sign In</button>
-            <a class="register" (click)="sign.openSignPopup()">Register</a>
+            @if(!user.isUserLoggedIn) {
+                <button class="confirm" (click)="sign.openSignPopup()">Sign In</button>
+                <a class="register" (click)="sign.openSignPopup()">Register</a>
+            }
+            @else {
+                <p class="u name">{{user.userData.name}}</p>
+                <p class="u text">{{user.userData.login}}</p>
+                <p class="u text">{{user.userData.email}}</p>
+                <p class="u text">{{user.userData.phone}}</p>
+                <a class="u options" [routerLink]="['/up']">Profile settings</a>
+            }
         </div>
     </div>
-    <div class="cart_container trigger" [routerLink]="['./c']">
+    <div class="cart_container trigger" [routerLink]="['/c']">
         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 24 24" xml:space="preserve">
             <g id="shop-cart">
                 <g>

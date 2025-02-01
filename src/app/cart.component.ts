@@ -8,6 +8,7 @@ import { StoreComponent } from "./store.component";
 import { HttpService } from "./http.service";
 import { CartService } from "./cart.service";
 import { SignService } from "./sign.service";
+import { UserService } from "./user.service";
 import { Item } from "./item";
 
 @Component({
@@ -19,7 +20,10 @@ import { Item } from "./item";
     providers: [HttpService]
 })
 export class CartComponent implements OnInit {
-    constructor(public cart: CartService, public sign: SignService, public http: HttpService) {
+    constructor(public cart: CartService, 
+                public sign: SignService, 
+                public http: HttpService,
+                public user: UserService) {
         this.cartServiceObservable = this.cart.idList$;    
     }
     

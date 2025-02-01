@@ -51,6 +51,13 @@
     width: 100%;
 }
 
+.message {
+    color: white;
+    font-size: 14px;
+    text-align: center;
+    width: 100%;
+}
+
 input {
     width: 100%;
 }
@@ -59,4 +66,12 @@ h1, h2 {
     text-align: center;
     color: white;
     font-weight: 600;
+}
+
+.log_out {
+    color: lightgray;
+    font-size: 14px;
+    margin-top: 15px;
+    text-align: center;
+    cursor: pointer;
 }

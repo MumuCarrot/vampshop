@@ -15,4 +15,8 @@ export class UserService {
     get isUserLoggedIn(): boolean {
         return this._user !== undefined;
     }
+
+    public signOut(): void {
+        this._user = undefined;
+    }
 }

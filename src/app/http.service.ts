@@ -41,7 +41,7 @@ export class HttpService{
         return this.http.post(`${HttpService.HOSTNAME}/user/create`, {user});
     }
 
-    updateUser(id: string, data: string, name: string, login: string, email: string, phone: string, password: string): Observable<Object> {
-        return this.http.put(`${HttpService.HOSTNAME}/user/update`, {id, data, name, login, email, phone, password});
+    updateUser(user: User): Observable<Object> {
+        return this.http.put(`${HttpService.HOSTNAME}/user/update`, {user});
     }
 }

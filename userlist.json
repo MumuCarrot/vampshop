@@ -1,12 +1,28 @@
 {
-    "userList": [
-        {
-            "id": "1",
-            "login": "testuser",
-            "name": "John Doe",
-            "email": "",
-            "phone": "",
-            "password": "testpassword"
-        }
-    ]
+  "userList": [
+    {
+      "id": "1",
+      "login": "testuser1",
+      "name": "John Doe",
+      "email": "",
+      "phone": "",
+      "password": "testpassword1"
+    },
+    {
+      "id": "2",
+      "login": "testuser2",
+      "name": "John Wick",
+      "email": "testuser2@test.user",
+      "phone": "+1234567890",
+      "password": "testpassword2"
+    },
+    {
+      "id": 3,
+      "login": "testuser3",
+      "name": "Very Cool John Pork",
+      "email": "cooltestuser3@test.user",
+      "phone": "+4777666777",
+      "password": "testpassword3"
+    }
+  ]
 }

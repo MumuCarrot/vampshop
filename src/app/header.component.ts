@@ -5,6 +5,7 @@ import { RouterLink } from "@angular/router";
 
 import { CartService } from "./cart.service";
 import { SignService } from "./sign.service";
+import { UserService } from "./user.service";
 
 @Component({
     selector: "header-comp",
@@ -14,7 +15,9 @@ import { SignService } from "./sign.service";
     styleUrl: "./header.component.css"
 })
 export class HeaderComponent {
-    constructor(public cart: CartService, public sign: SignService) {}
+    constructor(public cart: CartService, 
+                public sign: SignService,
+                public user: UserService) {}
 
     searchQuery:string = "";
     showUserMenu: boolean = false;
