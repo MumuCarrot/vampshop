@@ -8,9 +8,9 @@
     <div class="deal_promotion">
         @if (httpDayDealReady) {
             @for (item of dayDeal; track $index) {
-                <div class="deal_item" [routerLink]="['/p', item.id]">
+                <div class="deal_item">
                     <div>
-                        <img class="deal_item_image" [attr.src]="item.photo ? item.photo : 'https://i.pinimg.com/736x/b6/bd/fb/b6bdfb6f7ef37ce95e8fbba6ec5a40a2.jpg'">
+                        <img class="deal_item_image" [routerLink]="['/p', item.id]" [attr.src]="item.photo ? item.photo : 'https://i.pinimg.com/736x/b6/bd/fb/b6bdfb6f7ef37ce95e8fbba6ec5a40a2.jpg'">
                     </div>
                 </div>
             }
@@ -35,9 +35,9 @@
     <div class="deal_promotion">
         @if (httpYouShouldSeeReady) {
             @for(item of youShouldSee; track $index) {
-                <div class="deal_item" [routerLink]="['/p', item.id]">
+                <div class="deal_item">
                     <div>
-                        <img class="deal_item_image" [attr.src]="item.photo ? item.photo : 'https://i.pinimg.com/736x/b6/bd/fb/b6bdfb6f7ef37ce95e8fbba6ec5a40a2.jpg'">
+                        <img class="deal_item_image" [routerLink]="['/p', item.id]" [attr.src]="item.photo ? item.photo : 'https://i.pinimg.com/736x/b6/bd/fb/b6bdfb6f7ef37ce95e8fbba6ec5a40a2.jpg'">
                     </div>
                 </div>
             }
