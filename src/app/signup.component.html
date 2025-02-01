@@ -1,0 +1,15 @@
+<div class="form_container">
+    <div class="side_gradient"></div>
+    <div class="form">
+        <h1>Sign up</h1>
+        <h2>All * fields must be filled in</h2>
+        <input type="text" [(ngModel)]="user.userData.login" placeholder="* Login" id="login" autocomplete="off" (keypress)="onKeyPress($event)">
+        <input type="text" [(ngModel)]="user.userData.name" placeholder="* Username" id="username" autocomplete="off" (keypress)="onKeyPress($event)">
+        <input type="text" [(ngModel)]="user.userData.email" placeholder="Email" autocomplete="off" (keypress)="onKeyPress($event)">
+        <input type="text" [(ngModel)]="user.userData.phone" placeholder="Phone" autocomplete="off" (keypress)="onKeyPress($event)">
+        <input type="password" [(ngModel)]="user.userData.password" placeholder="* Password" id="password" autocomplete="off" (keypress)="onKeyPress($event)">
+        <input type="password" [(ngModel)]="passwordConfiramtion" placeholder="* Repeat your password" id="conf_password" autocomplete="off" (keypress)="onKeyPress($event)">
+        <p *ngFor="let err of alert" class="alert">{{err}}</p>
+        <button (click)="signContinuation()">Sign up</button>
+    </div>
+</div>

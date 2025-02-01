@@ -7,6 +7,7 @@ export class SignService {
     constructor(private renderer: Renderer2) {}
 
     private _visible: boolean = false;
+    public userData: string = '';
 
     get visible(): boolean {
         return this._visible;

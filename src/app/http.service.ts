@@ -1,6 +1,7 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
-import { map, Observable } from "rxjs";
+import { Observable } from "rxjs";
+import { User } from "./user";
   
 @Injectable()
 export class HttpService{
@@ -26,5 +27,21 @@ export class HttpService{
 
     getYouShouldSee(): Observable<Object> {
         return this.http.get(`${HttpService.HOSTNAME}/youshouldsee`);
+    }
+
+    doesUserExist(data: string): Observable<Object> {
+        return this.http.get(`${HttpService.HOSTNAME}/user/exist?data=${data}`);
+    }
+
+    getUser(data: string, password: string): Observable<Object> {
+        return this.http.post(`${HttpService.HOSTNAME}/user/get`, {data, password});
+    }
+
+    addUser(user: User): Observable<Object> {
+        return this.http.post(`${HttpService.HOSTNAME}/user/create`, {user});
+    }
+
+    updateUser(id: string, data: string, name: string, login: string, email: string, phone: string, password: string): Observable<Object> {
+        return this.http.put(`${HttpService.HOSTNAME}/user/update`, {id, data, name, login, email, phone, password});
     }
 }

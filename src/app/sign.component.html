@@ -8,12 +8,12 @@
         <h1 class="sign_text">Sign In/Sign Up</h1>
         <div class="form_container">
             <input 
-                class="item"
                 type="text" 
                 id="vamp_login" 
                 autocomplete="off"
                 placeholder="Email address or phone number"
-                [(ngModel)]="login">
+                [(ngModel)]="login"
+                (keypress)="onKeyPress($event)">
             <button class="item" (click)="signContinuation()">Continue</button>
         </div>
     </div>

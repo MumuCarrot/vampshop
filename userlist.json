@@ -1,0 +1,12 @@
+{
+    "userList": [
+        {
+            "id": "1",
+            "login": "testuser",
+            "name": "John Doe",
+            "email": "",
+            "phone": "",
+            "password": "testpassword"
+        }
+    ]
+}
