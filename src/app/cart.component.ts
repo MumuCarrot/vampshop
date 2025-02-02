@@ -33,6 +33,14 @@ export class CartComponent implements OnInit {
     shippingCharge: number = 0;
     totalPrice: number = 0;
 
+    sumSummary(): void {
+        this.itemPrice = Number((this.itemsInCart
+            .map(([item, count], index) => this.checkboxStates[index] ? item.price * count : 0)
+            .reduce((sum, price) => sum + price, 0)).toFixed(2));
+        this.shippingCharge = Number((((this.itemPrice * 5) / 100)).toFixed(2));
+        this.totalPrice = Number((this.itemPrice + this.shippingCharge).toFixed(2));
+    }
+
     ngOnInit(): void {
         this.searchForDataById();
     }
@@ -53,13 +61,10 @@ export class CartComponent implements OnInit {
                             return [item, count];
                         });
                         
-                        this.itemPrice = Number((this.itemsInCart.map(([item, _]) => item).
-                            reduce((sum, item) => sum + item.price, 0)).toFixed(2));
-                        this.shippingCharge = Number((((this.itemPrice * 5) / 100)).toFixed(2));
-                        this.totalPrice = Number((this.itemPrice + this.shippingCharge).toFixed(2))
-                        
                         this.masterChecked = true;
                         this.checkboxStates = Array(this.itemsInCart.length).fill(true);
+                        
+                        this.sumSummary();
                     },
                     error: () => {
                         console.log("Error with searching data for items in the cart by id.")
@@ -76,12 +81,14 @@ export class CartComponent implements OnInit {
     
     toggleAllCheckboxes() {
         this.checkboxStates = this.checkboxStates.map(() => this.masterChecked);
+        this.sumSummary();
     }
     
     onCheckboxChange(index: number) {
         this.checkboxStates[index] = !this.checkboxStates[index];
         let allChecked = this.checkboxStates.every(state => state);
         this.masterChecked = allChecked;
+        this.sumSummary();
     }
 
     removeSelected() {
@@ -92,6 +99,7 @@ export class CartComponent implements OnInit {
                 this.cart.removeItem(itemIdListCopy[i], 999);
             }
         }
+        this.sumSummary();
     }
 
     changeQuantity(item: [Item, number], direction: boolean) {
@@ -105,5 +113,6 @@ export class CartComponent implements OnInit {
             }
             this.cart.quantityForId = [this.itemsInCart[index][0].id.toString(), this.itemsInCart[index][1]];
         }
+        this.sumSummary();
     }
 }
