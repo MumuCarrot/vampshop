@@ -40,10 +40,18 @@ app.get('/data/:id', jsonParser, (req, res) => {
 // Data endpoint for multiple items
 app.get('/data', jsonParser, (req, res) => {
     const ids = req.query.ids ? req.query.ids.split(',') : [];
+    const keyWord = req.query.keyword;
     const data = getData('data.json').dataList;
 
     if (ids.length > 0) {
         const filteredItems = data.filter(product => ids.includes(product.id));
+        res.json(filteredItems);
+    }
+    else if (keyWord) {
+        const filteredItems = data.filter(product => {
+            return product.title.toLowerCase().
+                    includes(keyWord.toLowerCase());
+        });
         res.json(filteredItems);
     }
     else {

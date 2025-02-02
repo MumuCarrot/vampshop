@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 import { RouterLink } from "@angular/router";
 import { Item } from "./item";
 import { HttpService } from "./http.service";
@@ -16,6 +16,8 @@ export class StoreComponent implements OnInit {
     storeData: Item[] | undefined;
     httpDone: boolean = false;
 
+    @Input() keyWord: string = "";
+
     constructor(private httpService: HttpService, public cart: CartService) {}
 
     addToCart(event: Event, id: string) {
@@ -25,9 +27,16 @@ export class StoreComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.httpService.getData().
+        this.httpService.getData(this.keyWord).
         subscribe({
-            next: (data: any) => { this.storeData = data["dataList"]; this.httpDone = true; },
+            next: (data: any) => { 
+                if (data["dataList"]) {
+                    this.storeData = data["dataList"];
+                } else {
+                    this.storeData = data; 
+                }
+                this.httpDone = true;
+            },
             error: error => console.log(error)
         });
     }

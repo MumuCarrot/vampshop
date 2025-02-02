@@ -9,8 +9,8 @@ export class HttpService{
     private static readonly HOSTNAME: string = "http://localhost:3000";
     constructor(private http: HttpClient) {}
 
-    getData(): Observable<Object> {
-        return this.http.get(`${HttpService.HOSTNAME}/data`);
+    getData(keyWord: string = ""): Observable<Object> {
+        return this.http.get(`${HttpService.HOSTNAME}/data?keyword=${keyWord}`);
     }
 
     getItemById(id: string): Observable<Object> {
