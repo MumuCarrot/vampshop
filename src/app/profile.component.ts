@@ -5,6 +5,7 @@ import { Router, RouterModule } from "@angular/router";
 import { HttpService } from './http.service';
 import { SignService } from './sign.service';
 import { UserService } from './user.service';
+import { User } from './user';
 
 @Component({
     selector: 'profile-comp',
@@ -18,10 +19,13 @@ export class ProfileComponent {
     constructor(public sign: SignService, 
                 public http: HttpService, 
                 public user: UserService,
-                public router: Router) {}
+                public router: Router) {
+        this.temp_user = user.userData;
+    }
 
     alert: string[] = [];
     status: boolean = false;
+    temp_user: User;
 
     onKeyPress(event: KeyboardEvent): void { 
         if (event.key === "Enter") {
@@ -57,19 +61,20 @@ export class ProfileComponent {
     }
 
     signContinuation() {
-        if (this.user.userData === undefined) return;
+        if (this.temp_user === undefined) return;
 
         this.alert = [];
-        if (!this.loginCheck(this.user.userData.login)) this.alert.push('Login must contain at least 3 letters and 6 characters');
-        if (!this.userNameCheck(this.user.userData.name)) this.alert.push('Name must contain only letters or numbers');
-        if (!this.emailCheck(this.user.userData.email)) this.alert.push('Email is not valid');
-        if (!this.phoneCheck(this.user.userData.phone)) this.alert.push('Phone is not valid');
+        if (!this.loginCheck(this.temp_user.login)) this.alert.push('Login must contain at least 3 letters and 6 characters');
+        if (!this.userNameCheck(this.temp_user.name)) this.alert.push('Name must contain only letters or numbers');
+        if (!this.emailCheck(this.temp_user.email)) this.alert.push('Email is not valid');
+        if (!this.phoneCheck(this.temp_user.phone)) this.alert.push('Phone is not valid');
         if (this.alert.length > 0) return;
 
-        this.http.updateUser(this.user.userData).
+        this.http.updateUser(this.temp_user).
             subscribe({
                 next: (data: any) => { 
                     this.status = data.status;
+                    this.user.userData = this.temp_user;
                 },
                 error: (err: any) => this.alert = err.error?.error || 'Unknown error'
             });

@@ -20,11 +20,12 @@ export class SignUpComponent {
                 public http: HttpService, 
                 public user: UserService,
                 public router: Router) {
-        user.userData = new User();
+        this.temp_user = new User();
     }
 
     passwordConfiramtion: string = '';
     alert: string[] = [];
+    temp_user: User;
 
     onKeyPress(event: KeyboardEvent): void { 
         if (event.key === "Enter") {
@@ -65,15 +66,15 @@ export class SignUpComponent {
 
     signContinuation() {
         this.alert = [];
-        if (!this.loginCheck(this.user.userData.login)) this.alert.push('Login must contain at least 3 letters and 6 characters');
-        if (!this.userNameCheck(this.user.userData.name)) this.alert.push('Name must contain only letters or numbers');
-        if (!this.passwordCheck(this.user.userData.password)) this.alert.push('Password must contain only letters or numbers');
-        if (!this.comparePasswords(this.user.userData.password, this.passwordConfiramtion)) this.alert.push('Passwords do not match');
-        if (!this.emailCheck(this.user.userData.email)) this.alert.push('Email is not valid');
-        if (!this.phoneCheck(this.user.userData.phone)) this.alert.push('Phone is not valid');
+        if (!this.loginCheck(this.temp_user.login)) this.alert.push('Login must contain at least 3 letters and 6 characters');
+        if (!this.userNameCheck(this.temp_user.name)) this.alert.push('Name must contain only letters or numbers');
+        if (!this.passwordCheck(this.temp_user.password)) this.alert.push('Password must contain only letters or numbers');
+        if (!this.comparePasswords(this.temp_user.password, this.passwordConfiramtion)) this.alert.push('Passwords do not match');
+        if (!this.emailCheck(this.temp_user.email)) this.alert.push('Email is not valid');
+        if (!this.phoneCheck(this.temp_user.phone)) this.alert.push('Phone is not valid');
         if (this.alert.length > 0) return;
 
-        this.http.addUser(this.user.userData).
+        this.http.addUser(this.temp_user).
             subscribe({
                 next: (data: any) => { 
                     this.user.userData = data;
