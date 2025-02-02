@@ -18,14 +18,26 @@
     width: 65%;
 }
 
+.form_text {
+    position: relative;
+}
+
+.form_text_label {
+    position: absolute;
+    top: 8px;
+    left: 12px;
+    color: lightgray;
+    font-size: 14px;
+    font-weight: 600;
+}
+
 .form input {
     width: calc(100% - (1.5px * 2) - (12px * 2));
-    height: 48px;
     padding: 0;
     border: 1.5px solid lightgray;
     background-color: transparent;
     color: white;
-    padding: 3px 12px;
+    padding: 36px 12px 12px;
     margin-bottom: 20px;
 }
 
@@ -55,10 +67,6 @@
     color: white;
     font-size: 14px;
     text-align: center;
-    width: 100%;
-}
-
-input {
     width: 100%;
 }
 

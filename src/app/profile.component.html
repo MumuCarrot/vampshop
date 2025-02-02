@@ -3,10 +3,22 @@
     <div class="form">
         <h1>Profile settings</h1>
         <h2>All * fields must be filled in</h2>
-        <input type="text" [(ngModel)]="user.userData.login" placeholder="* Login" id="login" autocomplete="off" (keypress)="onKeyPress($event)">
-        <input type="text" [(ngModel)]="user.userData.name" placeholder="* Username" id="username" autocomplete="off" (keypress)="onKeyPress($event)">
-        <input type="text" [(ngModel)]="user.userData.email" placeholder="Email" autocomplete="off" (keypress)="onKeyPress($event)">
-        <input type="text" [(ngModel)]="user.userData.phone" placeholder="Phone" autocomplete="off" (keypress)="onKeyPress($event)">
+        <div class="form_text">
+            <input type="text" [(ngModel)]="user.userData.login" id="login" autocomplete="off" (keypress)="onKeyPress($event)">
+            <label for="login" class="form_text_label">Login *</label>
+        </div>
+        <div class="form_text">
+            <input type="text" [(ngModel)]="user.userData.name" id="username" autocomplete="off" (keypress)="onKeyPress($event)">
+            <label for="username" class="form_text_label">Username *</label>
+        </div>
+        <div class="form_text">
+            <input type="text" [(ngModel)]="user.userData.email" if="email" autocomplete="off" (keypress)="onKeyPress($event)">
+            <label for="email" class="form_text_label">Email</label>
+        </div>
+        <div class="form_text">
+            <input type="text" [(ngModel)]="user.userData.phone" if="phone" autocomplete="off" (keypress)="onKeyPress($event)">
+            <label for="phone" class="form_text_label">Phone</label>
+        </div>
         @for (err of alert; track $index) {
             <p class="alert">{{err}}</p>
         }
