@@ -5,6 +5,11 @@ import { BehaviorSubject } from "rxjs";
     providedIn: 'root',
 })
 export class CartService {
+    constructor() {
+        this.loadCart();
+        this.idListSubject.next([...this.idList]);
+    }
+    private storageKey = 'user_cart';
     private idList: [string, number][] = [];
 
     private idListSubject = new BehaviorSubject<[string, number][]>(this.idList);
@@ -41,6 +46,7 @@ export class CartService {
         }
         
         this.idListSubject.next([...this.idList]);
+        this.saveCart();
     }
 
     removeItem(item: string, quantity: number = 1) {
@@ -54,10 +60,23 @@ export class CartService {
         }
         
         this.idListSubject.next([...this.idList]);
+        this.saveCart();
     }
 
     clearCart() {
         this.idList = [];
         this.idListSubject.next([...this.idList]);
+        this.saveCart();
+    }
+
+    private saveCart() {
+        localStorage.setItem(this.storageKey, JSON.stringify(this.idList));
+    }
+    
+    private loadCart() {
+        const savedCart = localStorage.getItem(this.storageKey);
+        if (savedCart) {
+            this.idList = JSON.parse(savedCart);
+        }
     }
 }
